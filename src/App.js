@@ -1,6 +1,5 @@
 import React from "react";
 import Weather from "./Weather.js";
-import Footer from "./Footer.js";
 import './App.css';
 
 export default function App() {
@@ -8,7 +7,20 @@ export default function App() {
     <div className="App">
        <h1>Weather App</h1>
        <Weather city="Miami"/>
-        <Footer/>
+         <footer>
+        This project was coded by
+        <span className="coder">
+          <strong> Celine Cambier</strong> and is{" "}
+          <a
+            href="https://github.com/CelineCambier/weather-app-react"
+            className="github-link"
+            target="_blank"
+            rel="noreferrer"
+          >Open-Sourced on GitHub
+          </a>
+          .
+        </span>
+      </footer>
     </div>
   );
 }
