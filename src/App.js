@@ -1,6 +1,6 @@
 import React from "react";
-import Weather from "./Weather";
-
+import Weather from "./Weather.js";
+import Footer from "./Footer.js";
 import './App.css';
 
 function App() {
@@ -8,8 +8,9 @@ function App() {
     <div className="App">
       <header className="App-header">
        
-        <h1>Hello World!</h1>
-        <Weather city="miami"/>
+       <h1>Weather App</h1>
+       <Weather city="Miami"/>
+        <Footer/>
       </header>
     </div>
   );
