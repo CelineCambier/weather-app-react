@@ -1,53 +1,44 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import "./Weather.css";
 
 export default function Weather() {
-  const [input, setInput] = useState("");
-  const [loaded, setLoaded] = useState("");
-
-  function showWeather(response) {
-    let weather = {
-      temperature: Math.round(response.data.main.temp),
-      description: response.data.weather[0].description,
-      humidity: response.data.main.humidity,
-      wind: Math.round(response.data.wind.speed),
-      icon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    };
-    setLoaded(
-      <ul>
-        <li>Temperature: {weather.temperature}°C</li>
-        <li>Description: {weather.description}</li>
-        <li>Humidity: {weather.humidity}%</li>
-        <li>Wind: {weather.wind}km/h</li>
-        <li>
-          <img src={weather.icon} alt={weather.description} />
-        </li>
-      </ul>
-    );
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    let apiKey = "a95c2c6739994ba4903e007ee817e7d1";
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${apiKey}&units=metric`;
-    axios.get(url).then(showWeather);
-  }
-
-  function updateCity(event) {
-    setInput(event.target.value);
-  }
-
   return (
     <div className="Weather">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="search"
-          placeholder="Enter a city..."
-          onChange={updateCity}
-        />
-        <input type="submit" value="Search" />
+      <form>
+        <div className="row">
+          <div className="col-9">
+            <input
+              type="search"
+              placeHoler="Enter a city..."
+              className="form-control"
+            />
+          </div>
+          <div className="col-3">
+            <input type="submit" value="Search" className="btn btn-primary" />
+          </div>
+        </div>
       </form>
-      <h2>{loaded}</h2>
+      <h1>Lisbon</h1>
+      <ul>
+        <li>Wednesday 7:00</li>
+        <li>Sunny</li>
+      </ul>
+      <div className="row">
+        <div className="col-6">
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+            alt="Sunny"
+          />
+          6℃
+        </div>
+        <div className="col-6">
+          <ul>
+            <li>Precipitation: 15%</li>
+            <li>Humidity: 72%</li>
+            <li>Wind: 13 km/h</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
