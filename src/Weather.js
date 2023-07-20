@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import FormattedDate from "./FormattedDate";
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props) {
-  const [weatherData, setWeatherData] = useState({ready: false});
+  const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
       ready: true,
-      date: "Wednesday 7:00",
+      date: new Date(response.data.time * 1000),
       temperature: response.data.temperature.current,
       wind: response.data.wind.speed,
       city: response.data.city,
@@ -16,10 +17,9 @@ export default function Weather(props) {
       humidity: response.data.temperature.humidity,
       iconUrl: "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
     });
-  
   }
 
-  if(weatherData.ready) {
+  if (weatherData.ready) {
     return (
       <div className="Weather">
         <form>
@@ -43,7 +43,9 @@ export default function Weather(props) {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>{weatherData.date}</li>
+          <li>
+            <FormattedDate date={weatherData.date} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
@@ -55,7 +57,9 @@ export default function Weather(props) {
                 className="float-left"
               />
               <div className="float-left">
-                <span className="temperature">{Math.round(weatherData.temperature)}</span>
+                <span className="temperature">
+                  {Math.round(weatherData.temperature)}
+                </span>
                 <span className="unit">°C</span>
               </div>
             </div>
@@ -76,7 +80,4 @@ export default function Weather(props) {
 
     return "Loading...";
   }
-
- 
-
 }
