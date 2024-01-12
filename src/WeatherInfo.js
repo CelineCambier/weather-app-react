@@ -3,6 +3,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 import WindSpeed from "./WindSpeed";
+import "./Weather.css";
 
 export default function WeatherInfo(props) {
   return (
@@ -21,7 +22,7 @@ export default function WeatherInfo(props) {
               <WeatherIcon code={props.data.icon} />
             </div>
 
-            <div className="float-left">
+            <div className="float-left temperature">
               <WeatherTemperature celsius={props.data.temperature} />
             </div>
           </div>

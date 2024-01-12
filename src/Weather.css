@@ -9,6 +9,7 @@
 
 .Weather .search {
     box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.49);
+    margin-bottom: 20px;
 }
 
 .Weather h1 {
@@ -50,4 +51,15 @@
     position: relative;
     line-height: 1;
     top: -34px;
+}
+
+
+@media only screen and (max-width: 576px) {
+    .Weather .temperature {
+        font-size: 30px;
+    }
+    .Weather .unit {
+        font-size: 10px;
+        top: -17px;
+    }
 }
